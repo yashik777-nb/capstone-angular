@@ -1,0 +1,18 @@
+nav {
+  background-color: #673ab7;
+}
+
+a,
+.nav-link {
+  color: white;
+}
+
+a:hover,
+.nav-link:hover {
+  color: black;
+}
+
+#navbarSupportedContent {
+  align-items: center;
+  justify-content: space-around;
+}

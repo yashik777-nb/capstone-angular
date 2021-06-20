@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" routerLink="">CapStone</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -18,28 +18,37 @@
           class="form-control"
           type="search"
           id="searchDescription"
-          placeholder="Search Description"
-          aria-label="Search Description"
+          placeholder="Search Issues"
+          aria-label="Search Issues"
         />
       </form>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">About</a>
+          <a class="nav-link" aria-current="page" routerLink="about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Issues</a>
+          <a class="nav-link" routerLink="issues">Issues</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign-In</a>
+          <a class="nav-link" routerLink="add-issue">Add Issue</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Add Issue</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Profile
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="sign-in">Sign-In</a></li>
+            <li><a class="dropdown-item" routerLink="register">Register</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item">Logout</a></li>
+          </ul>
         </li>
       </ul>
     </div>

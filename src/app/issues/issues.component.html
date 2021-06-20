@@ -1,0 +1,13 @@
+<div class="cards">
+  <div class="card m-2" *ngFor="let issue of issues">
+    <h5 class="card-header">{{ issue.issueDescription }}</h5>
+    <div class="card-body">
+      <h5 class="card-title">Severity: {{ issue.issueSeverity }}</h5>
+      <p class="card-text">Status: {{ issue.issueStatus }}</p>
+      <a href="#" class="btn btn-primary">View Details</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <app-charts></app-charts>
+</div>

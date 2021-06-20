@@ -1,5 +1,9 @@
 nav {
-  background-color: #673ab7;
+  background-color: #4dabf5;
+}
+
+.navbar {
+  border-bottom: 1px solid black;
 }
 
 a,
@@ -15,4 +19,12 @@ a:hover,
 #navbarSupportedContent {
   align-items: center;
   justify-content: space-around;
+}
+
+.dropdown-item {
+  color: black !important;
+}
+
+.form-control {
+  border: 1px solid black;
 }

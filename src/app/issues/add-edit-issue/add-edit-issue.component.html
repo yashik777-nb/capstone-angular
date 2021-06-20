@@ -1,0 +1,42 @@
+<div class="container text-center">
+  <form>
+    <fa-icon [icon]="faSignIn" size="4x"></fa-icon>
+    <h1 class="h3 mb-3 font-weight-normal">Issue Title</h1>
+    <h1 class="h3 mb-3 font-weight-normal">Issue Description</h1>
+    <div class="form-control">
+      <label for="inputEmail" class="form-label"
+        ><strong>Email address</strong></label
+      >
+      <input
+        type="email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="Email address"
+        required
+      />
+    </div>
+    <div class="form-control mt-3">
+      <label for="inputPassword" class="form-label"
+        ><strong>Password</strong></label
+      >
+      <input
+        type="password"
+        id="inputPassword"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+    </div>
+    <button class="btn w-75 mt-3 btn-primary btn-block" type="submit">
+      <fa-icon [icon]="faIdCard" size="2x"></fa-icon> Sign in to Edit/Update
+      Details
+    </button>
+    <button
+      class="btn w-75 mt-3 btn-secondary btn-block"
+      type="button"
+      routerLink=""
+    >
+      Back to Issues
+    </button>
+  </form>
+</div>

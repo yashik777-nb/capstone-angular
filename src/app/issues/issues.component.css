@@ -11,6 +11,10 @@
   padding: 0.5rem;
 }
 
+.card-header {
+  background-color: #4dabf5;
+}
+
 @media (min-width: 375px) {
   .cards {
     grid-template-columns: repeat(1, 1fr);

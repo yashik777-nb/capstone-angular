@@ -12,10 +12,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartsComponent } from './issues/charts/charts.component';
 import { ChartsModule } from 'ng2-charts';
 import { AboutComponent } from './about/about.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { CustomizeComponent } from './customize/customize.component';
+import { SignInComponent } from './profile/sign-in/sign-in.component';
+import { RegistrationComponent } from './profile/registration/registration.component';
+import { CustomizeComponent } from './issues/customize/customize.component';
 import { FormsModule } from '@angular/forms';
+import { AddEditIssueComponent } from './issues/add-edit-issue/add-edit-issue.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { FormsModule } from '@angular/forms';
     SignInComponent,
     RegistrationComponent,
     CustomizeComponent,
+    AddEditIssueComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

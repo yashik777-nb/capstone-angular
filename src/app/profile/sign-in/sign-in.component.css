@@ -1,0 +1,10 @@
+fa-icon,
+h1 {
+  color: #4dabf5;
+}
+
+@media (min-width: 1920px) {
+  .container {
+    width: 50%;
+  }
+}

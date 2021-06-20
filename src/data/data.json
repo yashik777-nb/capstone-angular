@@ -22,7 +22,7 @@
     "issues": [
         {
             "id": 1,
-            "title": "Issue One",
+            "issueTitle": "Issue One",
             "issueDescription": "Issue Description One",
             "issueSeverity": "Critical",
             "issueStatus": "Open",
@@ -34,7 +34,7 @@
         },
         {
             "id": 2,
-            "title": "Issue Two",
+            "issueTitle": "Issue Two",
             "issueDescription": "Issue Description Two",
             "issueSeverity": "Minor",
             "issueStatus": "Closed",
@@ -46,7 +46,7 @@
         },
         {
             "id": 3,
-            "title": "Issue Three",
+            "issueTitle": "Issue Three",
             "issueDescription": "Issue Description Three",
             "issueSeverity": "Minor",
             "issueStatus": "Closed",
@@ -58,7 +58,7 @@
         },
         {
             "id": 4,
-            "title": "Issue Four",
+            "issueTitle": "Issue Four",
             "issueDescription": "Issue Description Four",
             "issueSeverity": "Minor",
             "issueStatus": "Closed",
@@ -69,7 +69,7 @@
             "hoverBackGroundColor": "#2cb215"
         },
         {
-            "title": "Issue Five",
+            "issueTitle": "Issue Five",
             "issueDescription": "Issue Description Five",
             "issueSeverity": "Minor",
             "issueStatus": "In Progress",

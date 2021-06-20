@@ -1,25 +1,33 @@
-<div class="cards">
-  <div class="card m-2" *ngFor="let issue of issues">
-    <h5 class="card-header">{{ issue.issueDescription }}</h5>
-    <div class="card-body">
-      <h5 class="card-title">Severity: {{ issue.issueSeverity }}</h5>
-      <p class="card-text">
-        <span class="fw-bold">Status: </span>
-        <span class="text-muted">{{ issue.issueStatus }}</span>
-      </p>
-      <p class="card-text">
-        <span class="fw-bold">Created: </span>
-        <span class="text-muted">{{
-          issue.createdDate | date: "fullDate"
-        }}</span>
-      </p>
-      <p class="card-text">
-        <span class="fw-bold">Resolved: </span>
-        <span class="text-muted">{{
-          issue.resolvedDate | date: "fullDate"
-        }}</span>
-      </p>
-      <a href="#" class="btn btn-outline-primary w-100">View Details</a>
+<div class="row">
+  <app-customize></app-customize>
+</div>
+<div class="row">
+  <div class="cards">
+    <div class="card m-2" *ngFor="let issue of issues">
+      <h5 class="card-header text-center">{{ issue.issueTitle }}</h5>
+      <h6 class="card-subtitle mt-2 text-wrap text-muted text-center">
+        {{ issue.issueDescription }}
+      </h6>
+      <div class="card-body">
+        <h5 class="card-title">Severity: {{ issue.issueSeverity }}</h5>
+        <p class="card-text">
+          <span class="fw-bold">Status: </span>
+          <span class="text-muted">{{ issue.issueStatus }}</span>
+        </p>
+        <p class="card-text">
+          <span class="fw-bold">Created: </span>
+          <span class="text-muted">{{
+            issue.createdDate | date: "fullDate"
+          }}</span>
+        </p>
+        <p class="card-text">
+          <span class="fw-bold">Resolved: </span>
+          <span class="text-muted">{{
+            issue.resolvedDate | date: "fullDate"
+          }}</span>
+        </p>
+        <a href="#" class="btn btn-outline-primary w-100">View Details</a>
+      </div>
     </div>
   </div>
 </div>

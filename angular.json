@@ -15,7 +15,8 @@
           "allowedCommonJsDependencies": [
             "lodash",
             "chart.js",
-            "ng2-charts.js"
+            "ng2-charts.js",
+            "chartjs-plugin-datalabels"
           ],
           "options": {
             "outputPath": "dist/capstone",

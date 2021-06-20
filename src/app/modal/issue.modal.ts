@@ -6,6 +6,9 @@ export class Issue {
     public issueSeverity: string,
     public issueStatus: string,
     public createdDate: Date,
-    public resolvedDate: Date
+    public resolvedDate: Date,
+    public views: number,
+    public backGroundColor: string,
+    public hoverBackGroundColor: string
   ) {}
 }

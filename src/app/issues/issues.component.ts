@@ -20,10 +20,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
 
   getIssues(): void {
     this.isuesSubscription = this._issuesService.getIssues().subscribe(
-      (issues: any) => {
-        this.issues = issues;
-        console.log(issues);
-      },
+      (issues: Issue[]) => (this.issues = issues),
       (err) => console.log(err)
     );
   }

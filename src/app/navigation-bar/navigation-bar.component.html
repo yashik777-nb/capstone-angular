@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light">
   <div class="container">
-    <a class="navbar-brand" routerLink="">CapStone</a>
+    <a class="navbar-brand" routerLink=""
+      ><fa-icon [icon]="faHome"></fa-icon>CapStone</a
+    >
     <button
       class="navbar-toggler"
       type="button"
@@ -24,13 +26,23 @@
       </form>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="about">About</a>
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="about"
+            routerLinkActive="active"
+            >About</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="issues">Issues</a>
+          <a class="nav-link" routerLink="issues" routerLinkActive="active"
+            >Issues</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="add-issue">Add Issue</a>
+          <a class="nav-link" routerLink="add-issue" routerLinkActive="active"
+            >Add Issue</a
+          >
         </li>
         <li class="nav-item dropdown">
           <a
@@ -44,8 +56,12 @@
             Profile
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="sign-in">Sign-In</a></li>
-            <li><a class="dropdown-item" routerLink="register">Register</a></li>
+            <li>
+              <a class="dropdown-item" routerLink="sign-in">Sign-In</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="register">Register</a>
+            </li>
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item">Logout</a></li>
           </ul>

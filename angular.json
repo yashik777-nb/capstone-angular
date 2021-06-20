@@ -12,6 +12,11 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+          "allowedCommonJsDependencies": [
+            "lodash",
+            "chart.js",
+            "ng2-charts.js"
+          ],
           "options": {
             "outputPath": "dist/capstone",
             "index": "src/index.html",

@@ -1,0 +1,53 @@
+<div class="container text-center">
+  <form>
+    <fa-icon [icon]="faSignIn" size="4x"></fa-icon>
+    <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+    <div class="form-control">
+      <label for="inputEmail" class="form-label"
+        ><strong>Your Name</strong></label
+      >
+      <input
+        type="text"
+        id="inputText"
+        class="form-control"
+        placeholder="Enter Your Name"
+        required
+      />
+    </div>
+    <div class="form-control mt-3">
+      <label for="inputEmail" class="form-label"
+        ><strong>Email address</strong></label
+      >
+      <input
+        type="email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="Email address"
+        required
+      />
+    </div>
+    <div class="form-control mt-3">
+      <label for="inputPassword" class="form-label"
+        ><strong>Password</strong></label
+      >
+      <input
+        type="password"
+        id="inputPassword"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+    </div>
+    <button class="btn w-75 mt-3 btn-primary btn-block" type="submit">
+      Register
+    </button>
+    <button
+      class="btn w-75 mt-3 btn-info btn-block"
+      type="button"
+      routerLink="/sign-in"
+    >
+      Sign In
+    </button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+  </form>
+</div>

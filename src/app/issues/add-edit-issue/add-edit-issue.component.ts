@@ -9,6 +9,11 @@ import { faSignInAlt, faIdCard } from '@fortawesome/free-solid-svg-icons';
 export class AddEditIssueComponent implements OnInit {
   faSignIn = faSignInAlt;
   faIdCard = faIdCard;
+  authenticated: boolean = false;
+  severityData: string[] = ['Critical', 'Major', 'Minor'];
+  statusData: string[] = ['Open', 'In Progress', 'Closed'];
+
+  severityValue: string;
 
   constructor() {}
 

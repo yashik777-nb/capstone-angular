@@ -18,6 +18,10 @@ const routes: Routes = [
     component: AddEditIssueComponent,
   },
   {
+    path: 'issues/add-issue',
+    component: AddEditIssueComponent,
+  },
+  {
     path: 'about',
     component: AboutComponent,
   },

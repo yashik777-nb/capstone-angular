@@ -4,6 +4,8 @@ import { MultiDataSet, Label } from 'ng2-charts';
 import { Issue } from 'src/app/modal/issue.modal';
 import { IssuesService } from 'src/app/services/issues.service';
 
+import DatalabelsPlugin from 'chartjs-plugin-datalabels';
+
 @Component({
   selector: 'app-doughnut-chart',
   templateUrl: './doughnut-chart.component.html',
@@ -13,6 +15,7 @@ export class DoughnutChartComponent implements OnInit {
   doughnutChartLabels: Label[] = [];
   doughnutChartData: MultiDataSet = [new Array(10)];
   doughnutChartType: ChartType = 'doughnut';
+  public pieChartPlugins = [DatalabelsPlugin];
 
   constructor(private issuesService: IssuesService) {}
 

@@ -18,7 +18,10 @@ import { CustomizeComponent } from './issues/customize/customize.component';
 import { FormsModule } from '@angular/forms';
 import { AddEditIssueComponent } from './issues/add-edit-issue/add-edit-issue.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 import { DoughnutChartComponent } from './issues/charts/doughnut-chart/doughnut-chart.component';
+
+import { DpDatePickerModule } from 'ng2-date-picker';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,8 @@ import { DoughnutChartComponent } from './issues/charts/doughnut-chart/doughnut-
     ChartsModule,
     FontAwesomeModule,
     FormsModule,
+    DpDatePickerModule,
+    // MyDatePickerModule,
   ],
   providers: [IssuesService],
   bootstrap: [AppComponent],

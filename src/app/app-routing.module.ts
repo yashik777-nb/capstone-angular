@@ -18,7 +18,7 @@ const routes: Routes = [
     component: AddEditIssueComponent,
   },
   {
-    path: 'issues/add-issue',
+    path: 'add-issue',
     component: AddEditIssueComponent,
   },
   {

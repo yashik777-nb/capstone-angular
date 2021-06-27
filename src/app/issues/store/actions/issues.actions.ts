@@ -7,6 +7,10 @@ export const ADD_ISSUE = 'ADD_ISSUE';
 export const DELETE_ISSUE = 'DELETE_ISSUE';
 export const START_EDIT = 'START_EDIT';
 export const STOP_EDIT = 'STOP_EDIT';
+export const TOGGLE_ISSUE_SEVERITY = 'TOGGLE_ISSUE_SEVERITY';
+export const TOGGLE_ISSUE_STATUS = 'TOGGLE_ISSUE_STATUS';
+export const TOGGLE_ISSUE_CREATED_DATE = 'TOGGLE_ISSUE_CREATED_DATE';
+export const TOGGLE_ISSUE_RESOLVED_DATE = 'TOGGLE_ISSUE_RESOLVED_DATE';
 
 export class GetIssues implements Action {
   readonly type = GET_ISSUES;
@@ -36,10 +40,28 @@ export class StopEditing implements Action {
   readonly type = STOP_EDIT;
 }
 
+// Customize Fields
+export class ToggleIssueSeverity implements Action {
+  readonly type = TOGGLE_ISSUE_SEVERITY;
+}
+export class ToggleIssueStatus implements Action {
+  readonly type = TOGGLE_ISSUE_STATUS;
+}
+export class ToggleIssueCreatedDate implements Action {
+  readonly type = TOGGLE_ISSUE_CREATED_DATE;
+}
+export class ToggleIssueResolvedDate implements Action {
+  readonly type = TOGGLE_ISSUE_RESOLVED_DATE;
+}
+
 export type Actions =
   | GetIssues
   | AddIssue
   | UpdateIssue
   | DeleteIssue
   | StartEditing
-  | StopEditing;
+  | StopEditing
+  | ToggleIssueSeverity
+  | ToggleIssueStatus
+  | ToggleIssueCreatedDate
+  | ToggleIssueResolvedDate;

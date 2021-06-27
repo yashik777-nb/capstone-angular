@@ -5,12 +5,20 @@ export interface IssuesListState {
   issues: Issue[];
   editedIssue: Issue;
   editedIssueIndex: number;
+  issueSeverityFlag: boolean;
+  issueStatusFlag: boolean;
+  issueCreatedDateFlag: boolean;
+  issueResolvedDateFlag: boolean;
 }
 
 const initialState: IssuesListState = {
   issues: [],
   editedIssue: null,
   editedIssueIndex: -1,
+  issueSeverityFlag: true,
+  issueStatusFlag: true,
+  issueCreatedDateFlag: true,
+  issueResolvedDateFlag: true,
 };
 
 export function issuesListReducer(
@@ -65,6 +73,26 @@ export function issuesListReducer(
         ...state,
         editedIssue: null,
         editedIssueIndex: -1,
+      };
+    case issuesActions.TOGGLE_ISSUE_SEVERITY:
+      return {
+        ...state,
+        issueSeverityFlag: !state.issueSeverityFlag,
+      };
+    case issuesActions.TOGGLE_ISSUE_STATUS:
+      return {
+        ...state,
+        issueStatusFlag: !state.issueStatusFlag,
+      };
+    case issuesActions.TOGGLE_ISSUE_CREATED_DATE:
+      return {
+        ...state,
+        issueCreatedDateFlag: !state.issueCreatedDateFlag,
+      };
+    case issuesActions.TOGGLE_ISSUE_RESOLVED_DATE:
+      return {
+        ...state,
+        issueResolvedDateFlag: !state.issueResolvedDateFlag,
       };
     default:
       return {

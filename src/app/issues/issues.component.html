@@ -12,18 +12,20 @@
         {{ issue.issueDescription }}
       </h6>
       <div class="card-body">
-        <h5 class="card-title">Severity: {{ issue.issueSeverity }}</h5>
-        <p class="card-text">
+        <h5 class="card-title" *ngIf="issueSeverityFlag">
+          Severity: {{ issue.issueSeverity }}
+        </h5>
+        <p class="card-text" *ngIf="issueStatusFlag">
           <span class="fw-bold">Status: </span>
           <span class="text-muted">{{ issue.issueStatus }}</span>
         </p>
-        <p class="card-text">
+        <p class="card-text" *ngIf="issueCreatedDateFlag">
           <span class="fw-bold">Created: </span>
           <span class="text-muted">{{
             issue.createdDate | date: "fullDate"
           }}</span>
         </p>
-        <p class="card-text">
+        <p class="card-text" *ngIf="issueResolvedDateFlag">
           <span class="fw-bold">Resolved: </span>
           <span class="text-muted">{{
             issue.resolvedDate | date: "fullDate"

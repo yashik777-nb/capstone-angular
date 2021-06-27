@@ -18,6 +18,11 @@ export class IssuesComponent implements OnInit, OnDestroy {
   userAuthenticated: boolean = false;
   username: string;
 
+  issueSeverityFlag: boolean = true;
+  issueStatusFlag: boolean = true;
+  issueCreatedDateFlag: boolean = true;
+  issueResolvedDateFlag: boolean = true;
+
   constructor(
     private _issuesService: IssuesService,
     private store: Store<fromApp.AppState>
@@ -27,13 +32,19 @@ export class IssuesComponent implements OnInit, OnDestroy {
     this._issuesService.getIssues();
     this.issues = this.store.select('issuesList');
     this.store.select('userData').subscribe((storeData) => {
-      console.log('[IssuesComponent]', storeData);
       if (storeData.user.id === '') {
         this.userAuthenticated = false;
       } else {
         this.userAuthenticated = true;
         this.username = storeData.user.firstname;
       }
+    });
+
+    this.store.select('issuesList').subscribe((stateDate) => {
+      this.issueSeverityFlag = stateDate.issueSeverityFlag;
+      this.issueStatusFlag = stateDate.issueStatusFlag;
+      this.issueCreatedDateFlag = stateDate.issueCreatedDateFlag;
+      this.issueResolvedDateFlag = stateDate.issueResolvedDateFlag;
     });
   }
 

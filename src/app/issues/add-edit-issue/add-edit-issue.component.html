@@ -3,6 +3,7 @@
     <div class="col offset-md-2">
       <form>
         <fa-icon [icon]="faSignIn" size="4x"></fa-icon>
+        <h1 class="h3 mb-3 font-weight-normal">Add an Issue</h1>
         <h1 class="h3 mb-3 font-weight-normal">Issue Title</h1>
         <h1 class="h3 mb-3 font-weight-normal">Issue Description</h1>
         <div class="form-control">
@@ -22,7 +23,9 @@
               {{ severity }}
             </option>
           </select>
-          <p class="form-text fs-5">Issue Severity</p>
+          <p class="form-text fs-5" *ngIf="editedIssueIndex >= 0">
+            Issue Severity
+          </p>
         </div>
         <div class="form-control mt-2">
           <label for="issueStatus" class="form-label fw-bold"
@@ -41,7 +44,9 @@
               {{ status }}
             </option>
           </select>
-          <p class="form-text fs-5">Issue Status</p>
+          <p class="form-text fs-5" *ngIf="editedIssueIndex >= 0">
+            Issue Status
+          </p>
         </div>
         <button class="btn w-75 mt-3 btn-primary btn-block" type="submit">
           <div class="d-flex justify-content-between align-items-center">

@@ -12,9 +12,14 @@ import * as fromUserActions from '../profile/store/actions/user.actions';
 })
 export class NavigationBarComponent implements OnInit {
   faHome = faHome;
+  authenticated: boolean = false;
   constructor(private store: Store<fromApp.AppState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store
+      .select('userData')
+      .subscribe((storeData) => (this.authenticated = storeData.authenticated));
+  }
 
   onLogout() {
     this.store.dispatch(new fromUserActions.LogoutUser());

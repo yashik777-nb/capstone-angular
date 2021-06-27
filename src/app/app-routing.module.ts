@@ -6,6 +6,7 @@ import { IssuesComponent } from './issues/issues.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegistrationComponent } from './profile/registration/registration.component';
 import { SignInComponent } from './profile/sign-in/sign-in.component';
+import { UserDetailsComponent } from './profile/user-details/user-details.component';
 
 const routes: Routes = [
   { path: '', component: IssuesComponent, pathMatch: 'full' },
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegistrationComponent,
+  },
+  {
+    path: 'userDetails',
+    component: UserDetailsComponent,
   },
   { path: '**', component: PageNotFoundComponent },
 ];

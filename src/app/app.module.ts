@@ -27,6 +27,7 @@ import { StoreModule } from '@ngrx/store';
 
 import * as fromApp from './store/app.reducer';
 import { UsersService } from './services/users.service';
+import { UserDetailsComponent } from './profile/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { UsersService } from './services/users.service';
     AddEditIssueComponent,
     PageNotFoundComponent,
     DoughnutChartComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,

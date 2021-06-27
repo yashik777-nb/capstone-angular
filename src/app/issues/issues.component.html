@@ -1,6 +1,9 @@
 <div class="row">
   <app-customize></app-customize>
 </div>
+<div class="row" *ngIf="userAuthenticated">
+  <h4>Hello {{ username }}! Please find the below issues</h4>
+</div>
 <div class="row">
   <div class="cards">
     <div class="card m-2" *ngFor="let issue of (issues | async).issues">

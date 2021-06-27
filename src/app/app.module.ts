@@ -26,6 +26,7 @@ import { DoughnutChartComponent } from './issues/charts/doughnut-chart/doughnut-
 import { StoreModule } from '@ngrx/store';
 
 import * as fromApp from './store/app.reducer';
+import { UsersService } from './services/users.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import * as fromApp from './store/app.reducer';
     FormsModule,
     StoreModule.forRoot(fromApp.appReducer),
   ],
-  providers: [IssuesService],
+  providers: [IssuesService, UsersService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

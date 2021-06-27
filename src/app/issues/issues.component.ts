@@ -15,6 +15,8 @@ export class IssuesComponent implements OnInit, OnDestroy {
   // issues: Issue[];
   issues: Observable<{ issues: Issue[] }>;
   isuesSubscription: Subscription;
+  userAuthenticated: boolean = false;
+  username: string;
 
   constructor(
     private _issuesService: IssuesService,
@@ -24,6 +26,15 @@ export class IssuesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._issuesService.getIssues();
     this.issues = this.store.select('issuesList');
+    this.store.select('userData').subscribe((storeData) => {
+      console.log('[IssuesComponent]', storeData);
+      if (storeData.user.id === '') {
+        this.userAuthenticated = false;
+      } else {
+        this.userAuthenticated = true;
+        this.username = storeData.user.firstname;
+      }
+    });
   }
 
   getIssues(): void {

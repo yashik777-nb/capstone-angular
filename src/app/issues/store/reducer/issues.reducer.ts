@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import { Issue } from 'src/app/modal/issue.modal';
 import * as issuesActions from '../actions/issues.actions';
 

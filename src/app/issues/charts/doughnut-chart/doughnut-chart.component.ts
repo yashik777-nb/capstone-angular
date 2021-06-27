@@ -6,6 +6,8 @@ import { IssuesService } from 'src/app/services/issues.service';
 
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../../store/app.reducer';
 @Component({
   selector: 'app-doughnut-chart',
   templateUrl: './doughnut-chart.component.html',
@@ -17,19 +19,33 @@ export class DoughnutChartComponent implements OnInit {
   doughnutChartType: ChartType = 'doughnut';
   public pieChartPlugins = [DatalabelsPlugin];
 
-  constructor(private issuesService: IssuesService) {}
+  constructor(
+    private issuesService: IssuesService,
+    private store: Store<fromApp.AppState>
+  ) {}
 
   ngOnInit(): void {
-    this.issuesService.getIssues().subscribe(
-      (issues: Issue[]) => {
-        this.doughnutChartLabels = issues.map(
+    this.store.select('issuesList').subscribe((storeData) => {
+      if (storeData.issues.length > 0) {
+        this.doughnutChartLabels = storeData.issues.map(
           (issue: Issue) => issue.issueTitle
         );
         this.doughnutChartData = [
-          [...issues.map((issue: Issue) => issue.views)],
+          [...storeData.issues.map((issue: Issue) => issue.views)],
         ];
-      },
-      (err) => console.log(err)
-    );
+      }
+    });
+
+    // this.issuesService.getIssues().subscribe(
+    //   (issues: Issue[]) => {
+    //     this.doughnutChartLabels = issues.map(
+    //       (issue: Issue) => issue.issueTitle
+    //     );
+    //     this.doughnutChartData = [
+    //       [...issues.map((issue: Issue) => issue.views)],
+    //     ];
+    //   },
+    //   (err) => console.log(err)
+    // );
   }
 }

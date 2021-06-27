@@ -23,6 +23,10 @@ import { AddEditIssueComponent } from './issues/add-edit-issue/add-edit-issue.co
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DoughnutChartComponent } from './issues/charts/doughnut-chart/doughnut-chart.component';
 
+import { StoreModule } from '@ngrx/store';
+
+import * as fromApp from './store/app.reducer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +48,7 @@ import { DoughnutChartComponent } from './issues/charts/doughnut-chart/doughnut-
     ChartsModule,
     FontAwesomeModule,
     FormsModule,
+    StoreModule.forRoot(fromApp.appReducer),
   ],
   providers: [IssuesService],
   bootstrap: [AppComponent],

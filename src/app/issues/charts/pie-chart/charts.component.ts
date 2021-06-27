@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartType, ChartOptions, ChartData } from 'chart.js';
+import { ChartType, ChartOptions } from 'chart.js';
 import {
   SingleDataSet,
   Label,
   monkeyPatchChartJsLegend,
   monkeyPatchChartJsTooltip,
-  Color,
 } from 'ng2-charts';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { Issue } from 'src/app/modal/issue.modal';
-import { IssuesService } from 'src/app/services/issues.service';
 
+import * as fromApp from '../../../store/app.reducer';
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
@@ -26,18 +26,19 @@ export class ChartsComponent implements OnInit {
   public pieChartLegend = true;
   public pieChartPlugins = [DatalabelsPlugin];
 
-  constructor(private issuesService: IssuesService) {
+  constructor(private store: Store<fromApp.AppState>) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
 
   ngOnInit(): void {
-    this.issuesService.getIssues().subscribe(
-      (issues: Issue[]) => {
-        this.pieChartLabels = issues.map((issue: Issue) => issue.issueTitle);
-        this.pieChartData = issues.map((issue: Issue) => issue.views);
-      },
-      (err) => console.log(err)
-    );
+    this.store.select('issuesList').subscribe((storeData) => {
+      if (storeData.issues.length > 0) {
+        this.pieChartLabels = storeData.issues.map(
+          (issue: Issue) => issue.issueTitle
+        );
+        this.pieChartData = storeData.issues.map((issue: Issue) => issue.views);
+      }
+    });
   }
 }

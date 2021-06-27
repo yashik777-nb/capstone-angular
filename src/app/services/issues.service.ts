@@ -3,6 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Issue } from '../modal/issue.modal';
 import { v4 as uuidv4 } from 'uuid';
 
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducer';
+import * as fromIssuesActions from '../issues/store/actions/issues.actions';
+
 @Injectable()
 export class IssuesService {
   newIssue = new EventEmitter<Issue>();
@@ -13,10 +17,19 @@ export class IssuesService {
     }),
   };
 
-  constructor(private _http: HttpClient) {}
+  constructor(
+    private _http: HttpClient,
+    private store: Store<fromApp.AppState>
+  ) {}
 
   getIssues() {
-    return this._http.get(this.issuesURL);
+    this._http
+      .get(this.issuesURL)
+      .subscribe((issues: Issue[]) =>
+        this.store.dispatch(new fromIssuesActions.GetIssues(issues))
+      );
+
+    // return this._http.get(this.issuesURL);
   }
 
   addIssue(newIssue: Issue) {

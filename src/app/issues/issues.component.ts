@@ -5,6 +5,7 @@ import { Issue } from '../modal/issue.modal';
 import { IssuesService } from '../services/issues.service';
 
 import * as fromApp from '../store/app.reducer';
+import * as fromIssuesActions from '../issues/store/actions/issues.actions';
 
 @Component({
   selector: 'app-issues',
@@ -22,6 +23,8 @@ export class IssuesComponent implements OnInit, OnDestroy {
   issueStatusFlag: boolean = true;
   issueCreatedDateFlag: boolean = true;
   issueResolvedDateFlag: boolean = true;
+
+  searchDescription: string;
 
   constructor(
     private _issuesService: IssuesService,
@@ -53,6 +56,12 @@ export class IssuesComponent implements OnInit, OnDestroy {
     //   (issues: Issue[]) => (this.issues = issues),
     //   (err) => console.log(err)
     // );
+  }
+
+  onSearch() {
+    this.store.dispatch(
+      new fromIssuesActions.FilterIssues(this.searchDescription)
+    );
   }
 
   ngOnDestroy() {

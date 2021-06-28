@@ -3,7 +3,9 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
+import * as fromIssuesActions from '../issues/store/actions/issues.actions';
 import * as fromUserActions from '../profile/store/actions/user.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -13,7 +15,8 @@ import * as fromUserActions from '../profile/store/actions/user.actions';
 export class NavigationBarComponent implements OnInit {
   faHome = faHome;
   authenticated: boolean = false;
-  constructor(private store: Store<fromApp.AppState>) {}
+  searchDescription: string = '';
+  constructor(private store: Store<fromApp.AppState>, private router: Router) {}
 
   ngOnInit(): void {
     this.store
@@ -23,5 +26,12 @@ export class NavigationBarComponent implements OnInit {
 
   onLogout() {
     this.store.dispatch(new fromUserActions.LogoutUser());
+    this.router.navigate(['']);
+  }
+
+  onSearch() {
+    this.store.dispatch(
+      new fromIssuesActions.FilterIssues(this.searchDescription)
+    );
   }
 }

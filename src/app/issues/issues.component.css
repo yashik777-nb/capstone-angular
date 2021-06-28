@@ -31,10 +31,16 @@
   .cards {
     grid-template-columns: repeat(2, 1fr);
   }
+  .mobileSearch {
+    display: none;
+  }
 }
 
 @media (min-width: 1920px) {
   .cards {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .mobileSearch {
+    display: none;
   }
 }

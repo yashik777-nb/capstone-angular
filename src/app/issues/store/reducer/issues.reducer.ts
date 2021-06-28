@@ -3,6 +3,7 @@ import * as issuesActions from '../actions/issues.actions';
 
 export interface IssuesListState {
   issues: Issue[];
+  issuesCopy: Issue[];
   editedIssue: Issue;
   editedIssueIndex: number;
   issueSeverityFlag: boolean;
@@ -13,6 +14,7 @@ export interface IssuesListState {
 
 const initialState: IssuesListState = {
   issues: [],
+  issuesCopy: [],
   editedIssue: null,
   editedIssueIndex: -1,
   issueSeverityFlag: true,
@@ -30,12 +32,24 @@ export function issuesListReducer(
       return {
         ...state,
         issues: [...action.payLoad],
+        issuesCopy: [...action.payLoad],
       };
-    case issuesActions.ADD_ISSUE:
-      console.log('[Add Ingredient Reducer]', state);
+    case issuesActions.FILTER_ISSUES:
+      const issuesData = [...state.issuesCopy];
+      const filteredIssues = issuesData.filter((issue: Issue) =>
+        issue.issueDescription
+          .toLowerCase()
+          .includes(action.payLoad.toLowerCase())
+      );
       return {
         ...state,
-        ingredients: [...state.issues, action.payLoad],
+        issues: filteredIssues,
+      };
+    case issuesActions.ADD_ISSUE:
+      return {
+        ...state,
+        issues: [...state.issues, action.payLoad],
+        issuesCopy: [...state.issues, action.payLoad],
       };
 
     case issuesActions.UPDATE_ISSUE:
@@ -49,6 +63,7 @@ export function issuesListReducer(
       return {
         ...state,
         issues: updatedIssues,
+        issuesCopy: updatedIssues,
         editedIngredient: null,
         editedIngredientIndex: -1,
       };
@@ -56,7 +71,10 @@ export function issuesListReducer(
       // const newIngredeints = state.ingredients.splice(action.payLoad, 1);
       return {
         ...state,
-        ingredients: state.issues.filter(
+        issues: state.issues.filter(
+          (ig, index) => index !== state.editedIssueIndex
+        ),
+        issuesCopy: state.issues.filter(
           (ig, index) => index !== state.editedIssueIndex
         ),
         editedIssue: null,
@@ -65,8 +83,8 @@ export function issuesListReducer(
     case issuesActions.START_EDIT:
       return {
         ...state,
-        editedIngredient: { ...state.issues[action.payLoad] },
-        editedIngredientIndex: action.payLoad,
+        editedIssue: { ...state.issues[action.payLoad] },
+        editedIssueIndex: action.payLoad,
       };
     case issuesActions.STOP_EDIT:
       return {

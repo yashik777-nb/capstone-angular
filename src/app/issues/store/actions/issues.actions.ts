@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 import { Issue } from 'src/app/modal/issue.modal';
 
 export const GET_ISSUES = 'GET_ISSUE';
+export const FILTER_ISSUES = 'FILTER_ISSUE';
 export const UPDATE_ISSUE = 'UPDATE_ISSUE';
 export const ADD_ISSUE = 'ADD_ISSUE';
 export const DELETE_ISSUE = 'DELETE_ISSUE';
@@ -15,6 +16,11 @@ export const TOGGLE_ISSUE_RESOLVED_DATE = 'TOGGLE_ISSUE_RESOLVED_DATE';
 export class GetIssues implements Action {
   readonly type = GET_ISSUES;
   constructor(public payLoad: Issue[]) {}
+}
+
+export class FilterIssues implements Action {
+  readonly type = FILTER_ISSUES;
+  constructor(public payLoad: string) {}
 }
 
 export class AddIssue implements Action {
@@ -56,6 +62,7 @@ export class ToggleIssueResolvedDate implements Action {
 
 export type Actions =
   | GetIssues
+  | FilterIssues
   | AddIssue
   | UpdateIssue
   | DeleteIssue

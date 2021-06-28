@@ -19,8 +19,11 @@
         <input
           class="form-control"
           type="search"
+          [(ngModel)]="searchDescription"
+          (change)="onSearch()"
+          name="searchDescription"
           id="searchDescription"
-          placeholder="Search Issues"
+          placeholder="Search Issues Description"
           aria-label="Search Issues"
         />
       </form>

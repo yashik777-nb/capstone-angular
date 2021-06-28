@@ -5,14 +5,14 @@
   <h4>Hello {{ username }}! Please find the below issues</h4>
 </div>
 <div class="row mobileSearch text-center">
-  <form class="mt-sm-2" id="nav-form">
+  <form class="mt-sm-2" id="nav-form-mobile">
     <input
       class="form-control"
       type="search"
-      [(ngModel)]="searchDescription"
+      [(ngModel)]="searchDescriptionMobile"
       (change)="onSearch()"
-      name="searchDescription"
-      id="searchDescription"
+      name="searchDescriptionMobile"
+      id="searchDescriptionMobile"
       placeholder="Search Issues Description"
       aria-label="Search Issues"
     />
@@ -20,7 +20,10 @@
 </div>
 <div class="row">
   <div class="cards">
-    <div class="card m-2" *ngFor="let issue of (issues | async).issues">
+    <div
+      class="card m-2"
+      *ngFor="let issue of (issues | async).issues; let i = index"
+    >
       <h5 class="card-header text-center">{{ issue.issueTitle }}</h5>
       <h6 class="card-subtitle mt-2 text-wrap text-muted text-center">
         {{ issue.issueDescription }}
@@ -45,7 +48,11 @@
             issue.resolvedDate | date: "fullDate"
           }}</span>
         </p>
-        <a href="#" class="btn btn-outline-primary w-100">View Details</a>
+        <a
+          class="btn btn-outline-primary w-100"
+          (click)="navigateToIssueDetails(i)"
+          >View Details</a
+        >
       </div>
     </div>
   </div>

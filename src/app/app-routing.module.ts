@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { AddEditIssueComponent } from './issues/add-edit-issue/add-edit-issue.component';
+import { IssueDetailActivateGaurd } from './issues/guards/issueDetail-gaurd.service';
+import { AddIssueActivateGaurd } from './issues/guards/newIssue-gaurd.service';
 import { IssuesComponent } from './issues/issues.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegistrationComponent } from './profile/registration/registration.component';
@@ -15,12 +17,14 @@ const routes: Routes = [
     component: IssuesComponent,
   },
   {
-    path: 'issues/:issueDescription',
+    path: 'issues/:id/:mode',
     component: AddEditIssueComponent,
+    canActivate: [IssueDetailActivateGaurd],
   },
   {
-    path: 'add-issue',
+    path: 'add-issue/:mode',
     component: AddEditIssueComponent,
+    canActivate: [AddIssueActivateGaurd],
   },
   {
     path: 'about',
@@ -38,7 +42,7 @@ const routes: Routes = [
     path: 'userDetails',
     component: UserDetailsComponent,
   },
-  { path: '**', component: PageNotFoundComponent },
+  // { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

@@ -6,6 +6,7 @@ import { IssuesService } from '../services/issues.service';
 
 import * as fromApp from '../store/app.reducer';
 import * as fromIssuesActions from '../issues/store/actions/issues.actions';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-issues',
@@ -24,11 +25,13 @@ export class IssuesComponent implements OnInit, OnDestroy {
   issueCreatedDateFlag: boolean = true;
   issueResolvedDateFlag: boolean = true;
 
-  searchDescription: string;
+  searchDescriptionMobile: string;
 
   constructor(
     private _issuesService: IssuesService,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -60,11 +63,22 @@ export class IssuesComponent implements OnInit, OnDestroy {
 
   onSearch() {
     this.store.dispatch(
-      new fromIssuesActions.FilterIssues(this.searchDescription)
+      new fromIssuesActions.FilterIssues(this.searchDescriptionMobile)
     );
   }
 
   ngOnDestroy() {
     // this.isuesSubscription.unsubscribe();
+  }
+
+  navigateToIssueDetails(i: string) {
+    this.store.dispatch(new fromIssuesActions.StartEditing(+i));
+    if (this.route.snapshot.url.length > 0)
+      this.router.navigate(['issues', i + 1, 'edit']);
+    else
+      this.router.navigate(['issues', i + 1, 'edit'], {
+        relativeTo: this.route,
+      });
+    // console.log(issueDescription);
   }
 }

@@ -29,6 +29,15 @@ import * as fromApp from './store/app.reducer';
 import { UsersService } from './services/users.service';
 import { UserDetailsComponent } from './profile/user-details/user-details.component';
 
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+} from '@danielmoncada/angular-datetime-picker';
+
+import { DpDatePickerModule } from 'ng2-date-picker';
+import { IssueDetailActivateGaurd } from './issues/guards/issueDetail-gaurd.service';
+import { AddIssueActivateGaurd } from './issues/guards/newIssue-gaurd.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +52,8 @@ import { UserDetailsComponent } from './profile/user-details/user-details.compon
     PageNotFoundComponent,
     DoughnutChartComponent,
     UserDetailsComponent,
+    // OwlDateTimeModule,
+    // OwlNativeDateTimeModule,
   ],
   imports: [
     BrowserModule,
@@ -51,9 +62,15 @@ import { UserDetailsComponent } from './profile/user-details/user-details.compon
     ChartsModule,
     FontAwesomeModule,
     FormsModule,
+    DpDatePickerModule,
     StoreModule.forRoot(fromApp.appReducer),
   ],
-  providers: [IssuesService, UsersService],
+  providers: [
+    IssuesService,
+    UsersService,
+    IssueDetailActivateGaurd,
+    AddIssueActivateGaurd,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

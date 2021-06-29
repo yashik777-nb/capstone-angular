@@ -101,7 +101,7 @@ export class AddEditIssueComponent implements OnInit {
       const newIssue = new Issue(
         '',
         form.value.issueTitle,
-        form.value.issueDescrption,
+        form.value.issueDescription,
         form.value.issueSeverity,
         form.value.issueStatus,
         form.value.issueCreatedDate.toDate(),

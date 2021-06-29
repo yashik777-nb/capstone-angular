@@ -56,7 +56,7 @@ export function issuesListReducer(
       const issue = state.issues[state.editedIssueIndex];
       const updatedIssue = {
         ...issue,
-        ...action.payLoad.issue,
+        ...action.payLoad,
       };
       const updatedIssues = [...state.issues];
       updatedIssue[state.editedIssueIndex] = updatedIssues;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import {
   faSignInAlt,
   faIdCard,
@@ -16,6 +16,10 @@ import { Issue } from 'src/app/modal/issue.modal';
 import { DatePickerDirective } from 'ng2-date-picker';
 import { DatePickerComponent } from 'ng2-date-picker';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Moment } from 'moment';
+import { IssuesService } from 'src/app/services/issues.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-issue',
@@ -34,15 +38,22 @@ export class AddEditIssueComponent implements OnInit {
   severityData: string[] = ['Critical', 'Major', 'Minor'];
   statusData: string[] = ['Open', 'In Progress', 'Closed'];
 
+  @ViewChild('f') issueForm: NgForm;
+
   @ViewChild('dayPicker') datePicker: DatePickerComponent;
   datePickerConfig = {
     format: 'MM/DD/YYYY',
   };
+  issueCreatedDate: Moment;
+  issueCreatedDateFlag: boolean = false;
+  issueResolvedDate: Moment;
+  issueResolvedDateFlag: boolean = false;
 
   constructor(
     private store: Store<fromApp.AppState>,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private issuesService: IssuesService
   ) {}
 
   open() {
@@ -54,15 +65,82 @@ export class AddEditIssueComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (params: Params) => (this.mode = params['mode'])
-    );
-    this.store
-      .select('userData')
-      .subscribe((storeData) => (this.authenticated = storeData.authenticated));
-    this.store.select('issuesList').subscribe((storeData) => {
-      this.editedIssueIndex = storeData.editedIssueIndex;
-      this.editedIssue = storeData.editedIssue;
+    this.route.params.subscribe((params: Params) => {
+      this.mode = params['mode'];
+      this.store
+        .select('userData')
+        .subscribe(
+          (storeData) => (this.authenticated = storeData.authenticated)
+        );
+      if (params['mode'] === 'edit') {
+        this.store.select('issuesList').subscribe((storeData) => {
+          this.editedIssueIndex = storeData.editedIssueIndex;
+          this.editedIssue = storeData.editedIssue;
+        });
+      }
     });
+  }
+
+  onIssueCreatedDateChange() {
+    this.issueCreatedDateFlag = false;
+  }
+  onIssueResolvedDateChange() {
+    this.issueResolvedDateFlag = false;
+  }
+
+  onFormSubmit(form: NgForm) {
+    if (form.value.issueCreatedDate === undefined) {
+      this.issueCreatedDateFlag = true;
+      return;
+    }
+    if (form.value.issueResolvedDate === undefined) {
+      this.issueResolvedDateFlag = true;
+      return;
+    }
+    if (this.mode === 'new') {
+      const newIssue = new Issue(
+        '',
+        form.value.issueTitle,
+        form.value.issueDescrption,
+        form.value.issueSeverity,
+        form.value.issueStatus,
+        form.value.issueCreatedDate.toDate(),
+        form.value.issueCreatedDate.toDate(),
+        1
+      );
+      this.issuesService.addIssue(newIssue).subscribe((issue: Issue) => {
+        this.store.dispatch(new fromIssuesActions.AddIssue(issue));
+        this.router.navigate(['']);
+      });
+    } else {
+      const updatedIssue = new Issue(
+        this.editedIssue.id,
+        this.editedIssue.issueTitle,
+        this.editedIssue.issueDescription,
+        form.controls['issueSeverity'].touched &&
+        form.value.issueSeverity !== this.editedIssue.issueSeverity
+          ? form.value.issueSeverity
+          : this.editedIssue.issueSeverity,
+        form.controls['issueStatus'].touched &&
+        form.value.issueStatus !== this.editedIssue.issueStatus
+          ? form.value.issueStatus
+          : this.editedIssue.issueStatus,
+        form.value.issueCreatedDate.toDate(),
+        form.value.issueResolvedDate.toDate(),
+        this.editedIssue.views + 1
+      );
+      this.issuesService.updateIssue(updatedIssue).subscribe((issue: Issue) => {
+        this.store.dispatch(new fromIssuesActions.UpdateIssue(issue));
+        this.router.navigate(['']);
+      });
+    }
+  }
+
+  formatDate(moment: Moment): Date {
+    return new Date(
+      moment.toObject().years,
+      moment.toObject().months,
+      moment.toObject().date
+    );
   }
 }

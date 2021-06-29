@@ -24,9 +24,11 @@ export class AddIssueActivateGaurd implements CanActivate {
     | boolean
     | UrlTree {
     this.store.select('userData').subscribe((storeData) => {
-      if (!storeData.authenticated)
-        alert('Not Signed In. Please Sign In to Add Issues');
-      this.route.navigate(['sign-in']);
+      // if (!storeData.authenticated) {
+      //   alert('Not Signed In. Please Sign In to Add Issues');
+      //   this.route.navigate(['sign-in']);
+      // } else {
+      // }
     });
     return true;
   }

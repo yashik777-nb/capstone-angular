@@ -30,7 +30,7 @@ export class AddIssue implements Action {
 
 export class UpdateIssue implements Action {
   readonly type = UPDATE_ISSUE;
-  constructor(public payLoad: { issue: Issue }) {}
+  constructor(public payLoad: Issue) {}
 }
 
 export class DeleteIssue implements Action {

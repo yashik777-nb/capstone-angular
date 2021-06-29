@@ -41,13 +41,15 @@ export class SignInComponent implements OnInit, OnDestroy {
           }
         })[0],
       };
+      console.log(userFound);
       if (userFound.id) {
         console.log('User Found');
         console.log(userFound);
         this.store.dispatch(new fromUserActions.AuthenticateUser(userFound));
-        this.router.navigate(['issues']);
+        this.router.navigate(['']);
       } else {
         console.log('User Not Found');
+        this.userNotFound = true;
       }
     });
   }

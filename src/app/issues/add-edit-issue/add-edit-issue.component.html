@@ -1,15 +1,68 @@
 <div class="container text-center">
   <div class="row">
     <div class="col offset-md-2">
-      <form>
+      <form (ngSubmit)="onFormSubmit(f)" #f="ngForm">
         <fa-icon [icon]="faClipboardList" size="4x"></fa-icon>
         <h1 class="h3 mb-3 font-weight-normal">
-          <strong *ngIf="mode == 'add'">Add an Issue</strong>
           <strong *ngIf="mode == 'edit'">Update Issue Form</strong>
+          <strong *ngIf="mode == 'new'">Add an Issue</strong>
         </h1>
-        <h1 class="h3 mb-3 font-weight-normal">Issue Title</h1>
-        <h1 class="h3 mb-3 font-weight-normal">Issue Description</h1>
-        <div class="form-control">
+        <!-- Issue Title -->
+        <div>
+          <h1 class="h3 mb-3 font-weight-normal" *ngIf="mode == 'edit'">
+            Issue Title: {{ editedIssue.issueTitle }}
+          </h1>
+          <div class="form-control mt-3" *ngIf="mode == 'new'">
+            <label for="issueTitle" class="form-label"
+              ><strong>Issue Title</strong></label
+            >
+            <input
+              type="text"
+              id="issueTitle"
+              class="form-control"
+              [disabled]="!authenticated"
+              placeholder="Issue Title"
+              name="issueTitle"
+              ngModel
+              required
+              #issueTitle="ngModel"
+            />
+            <span
+              class="form-text text-danger"
+              *ngIf="!issueTitle.valid && issueTitle.touched"
+              >Please enter the Issue Title</span
+            >
+          </div>
+        </div>
+        <!-- Issue Description -->
+        <div>
+          <h1 class="h3 mb-3 font-weight-normal" *ngIf="mode == 'edit'">
+            Issue Title: {{ editedIssue.issueDescription }}
+          </h1>
+          <div class="form-control mt-3" *ngIf="mode == 'new'">
+            <label for="issueDescription" class="form-label"
+              ><strong>Issue Description</strong></label
+            >
+            <input
+              type="text"
+              id="issueDescription"
+              [disabled]="!authenticated"
+              class="form-control"
+              placeholder="Issue Description"
+              name="issueDescription"
+              ngModel
+              required
+              #issueDescription="ngModel"
+            />
+            <span
+              class="form-text text-danger"
+              *ngIf="!issueDescription.valid && issueDescription.touched"
+              >Please enter the Issue Description</span
+            >
+          </div>
+        </div>
+        <!-- Issue Severity -->
+        <div class="form-control mt-3">
           <label for="issueSeverity" class="form-label fw-bold"
             >Issue Severity</label
           >
@@ -17,18 +70,28 @@
             id="issueSeverity"
             name="issueSeverity"
             class="form-select"
-            [disabled]="!authenticated && editedIssueIndex >= 0"
+            [disabled]="!authenticated"
             required
             ngModel
+            #issueSeverity="ngModel"
           >
             <option label="-- Choose Severity --" disabled></option>
             <option *ngFor="let severity of severityData">
               {{ severity }}
             </option>
           </select>
-          <p class="form-text fs-5" *ngIf="editedIssueIndex >= 0">
-            {{ editedIssue.issueSeverity }}
-          </p>
+          <div>
+            <span
+              class="form-text text-danger"
+              *ngIf="!issueSeverity.valid && issueSeverity.touched"
+              >Please choose the Issue Severity</span
+            >
+          </div>
+          <div>
+            <span class="form-text fw-bold fs-5 mt-1" *ngIf="mode == 'edit'">
+              Previous value: {{ editedIssue.issueSeverity }}
+            </span>
+          </div>
         </div>
         <div class="form-control mt-2">
           <label for="issueStatus" class="form-label fw-bold"
@@ -41,33 +104,94 @@
             [disabled]="!authenticated"
             required
             ngModel
+            #issueStatus="ngModel"
           >
             <option label="-- Choose Status --" disabled></option>
             <option *ngFor="let status of statusData">
               {{ status }}
             </option>
           </select>
-          <p class="form-text fs-5" *ngIf="editedIssueIndex >= 0">
-            Issue Status
-          </p>
+          <div>
+            <span
+              class="form-text text-danger"
+              *ngIf="!issueStatus.valid && issueStatus.touched"
+              >Please choose the Issue Status</span
+            >
+          </div>
+          <div>
+            <span class="form-text fw-bold fs-5 mt-1" *ngIf="mode == 'edit'">
+              Previous value: {{ editedIssue.issueStatus }}
+            </span>
+          </div>
         </div>
-        <div class="form-control">
-          <label for="issueDate" class="form-label fw-bold">Created Date</label>
+        <div class="form-control mt-3">
+          <label for="issueCreatedDate" class="form-label fw-bold"
+            >Issue Created Date</label
+          >
           <div>
             <dp-date-picker
               #dayPicker
+              name="issueCreatedDate"
+              ngModel
+              (onChange)="onIssueCreatedDateChange()"
+              [disabled]="!authenticated"
+              [(ngModel)]="issueCreatedDate"
               [config]="datePickerConfig"
               [theme]="'dp-material'"
             ></dp-date-picker>
           </div>
-          <p class="form-text fs-5" *ngIf="editedIssueIndex >= 0">
-            Issue Severity
-          </p>
+          <div>
+            <span class="form-text text-danger" *ngIf="issueCreatedDateFlag"
+              >Please choose Issue Created Date</span
+            >
+          </div>
+          <div>
+            <span class="form-text fw-bold fs-5 mt-1" *ngIf="mode == 'edit'">
+              Previous value: {{ editedIssue.createdDate | date: "fullDate" }}
+            </span>
+          </div>
         </div>
-        <button class="btn w-75 mt-3 btn-primary btn-block" type="submit">
+        <div class="form-control mt-3">
+          <label for="issueResolvedDate" class="form-label fw-bold"
+            >Issue Resolved Date</label
+          >
+          <div>
+            <dp-date-picker
+              #dayPicker
+              name="issueResolvedDate"
+              ngModel
+              (onChange)="onIssueResolvedDateChange()"
+              [disabled]="!authenticated"
+              [(ngModel)]="issueResolvedDate"
+              [config]="datePickerConfig"
+              [theme]="'dp-material'"
+            ></dp-date-picker>
+          </div>
+          <div>
+            <span class="form-text text-danger" *ngIf="issueResolvedDateFlag"
+              >Please choose Issue Resolved Date</span
+            >
+          </div>
+          <div>
+            <span class="form-text fw-bold fs-5 mt-1" *ngIf="mode == 'edit'">
+              Previous value: {{ editedIssue.resolvedDate | date: "fullDate" }}
+            </span>
+          </div>
+        </div>
+        <button
+          class="btn w-75 mt-3 btn-primary btn-block"
+          type="submit"
+          [disabled]="!f.valid"
+        >
+          Submit
+        </button>
+        <button class="btn w-75 mt-3 btn-primary btn-block" type="button">
           <div class="d-flex justify-content-between align-items-center">
             <fa-icon [icon]="faIdCard" size="2x"></fa-icon>
-            <strong>Sign in to Add / Update / Delete Details</strong>
+            <strong *ngIf="!authenticated"
+              >Sign in to Add / Update / Delete Details</strong
+            >
+            <strong *ngIf="authenticated">Submit</strong>
           </div>
         </button>
         <button

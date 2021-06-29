@@ -32,6 +32,14 @@ export class IssuesService {
     // return this._http.get(this.issuesURL);
   }
 
+  updateIssue(issue: Issue) {
+    return this._http.put(
+      this.issuesURL + `/${issue.id}`,
+      issue,
+      this.httpOptions
+    );
+  }
+
   addIssue(newIssue: Issue) {
     const id = uuidv4();
     newIssue.id = id;

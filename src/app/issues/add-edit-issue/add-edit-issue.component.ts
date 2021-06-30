@@ -136,11 +136,7 @@ export class AddEditIssueComponent implements OnInit {
     }
   }
 
-  formatDate(moment: Moment): Date {
-    return new Date(
-      moment.toObject().years,
-      moment.toObject().months,
-      moment.toObject().date
-    );
+  navigateToSignIn() {
+    this.router.navigate(['sign-in']);
   }
 }

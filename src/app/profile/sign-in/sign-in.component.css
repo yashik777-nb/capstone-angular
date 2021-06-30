@@ -3,6 +3,10 @@ h1 {
   color: #4dabf5;
 }
 
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
 @media (min-width: 1920px) {
   .container {
     width: 50%;

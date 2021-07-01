@@ -7,7 +7,9 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
 import * as fromIssuesActions from '../issues/store/actions/issues.actions';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class IssuesService {
   newIssue = new EventEmitter<Issue>();
   private issuesURL = 'http://localhost:3001/issues';
@@ -44,5 +46,9 @@ export class IssuesService {
     const id = uuidv4();
     newIssue.id = id;
     return this._http.post(this.issuesURL, newIssue, this.httpOptions);
+  }
+
+  deleteIssue(id: string) {
+    return this._http.delete(this.issuesURL + `/${id}`, this.httpOptions);
   }
 }

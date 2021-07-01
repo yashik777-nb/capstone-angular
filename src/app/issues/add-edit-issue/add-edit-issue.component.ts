@@ -139,4 +139,11 @@ export class AddEditIssueComponent implements OnInit {
   navigateToSignIn() {
     this.router.navigate(['sign-in']);
   }
+
+  onIssueDelete() {
+    this.issuesService.deleteIssue(this.editedIssue.id).subscribe(() => {
+      this.store.dispatch(new fromIssuesActions.DeleteIssue());
+      this.router.navigate(['']);
+    });
+  }
 }

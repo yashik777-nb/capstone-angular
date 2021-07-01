@@ -1,6 +1,6 @@
 <div class="container text-center">
   <div class="row">
-    <div class="col offset-md-2">
+    <div class="col offset-md-1">
       <form (ngSubmit)="onFormSubmit(f)" #f="ngForm">
         <fa-icon [icon]="faClipboardList" size="4x"></fa-icon>
         <h1 class="h3 mb-3 font-weight-normal">
@@ -193,6 +193,7 @@
             class="btn w-75 m-3 btn-danger btn-block"
             type="button"
             [disabled]="!authenticated"
+            (click)="onIssueDelete()"
           >
             Delete
           </button>

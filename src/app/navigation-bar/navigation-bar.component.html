@@ -68,11 +68,19 @@
             <li>
               <a class="dropdown-item" routerLink="register">Register</a>
             </li>
-            <li *ngIf="authenticated"><hr class="dropdown-divider" /></li>
-            <li *ngIf="authenticated">
-              <a class="dropdown-item" routerLink="userDetails">User Details</a>
-            </li>
-            <!-- <li><a class="dropdown-item" (click)="onLogout()">Logout</a></li> -->
+            <div *ngIf="authenticated$ | async">
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="userDetails"
+                  >User Details</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="onLogout()">Logout</a>
+              </li>
+            </div>
           </ul>
         </li>
       </ul>

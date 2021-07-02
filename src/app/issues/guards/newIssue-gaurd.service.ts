@@ -30,6 +30,6 @@ export class AddIssueActivateGaurd implements CanActivate {
       } else {
       }
     });
-    return true;
+    return false;
   }
 }

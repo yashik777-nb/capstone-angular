@@ -6,7 +6,8 @@ import * as fromApp from '../store/app.reducer';
 import * as fromIssuesActions from '../issues/store/actions/issues.actions';
 import * as fromUserActions from '../profile/store/actions/user.actions';
 import { Router } from '@angular/router';
-
+import { Observable } from 'rxjs';
+import { User } from '../modal/user.modal';
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
@@ -14,14 +15,12 @@ import { Router } from '@angular/router';
 })
 export class NavigationBarComponent implements OnInit {
   faHome = faHome;
-  authenticated: boolean = false;
+  authenticated$: Observable<boolean>;
   searchDescription: string = '';
   constructor(private store: Store<fromApp.AppState>, private router: Router) {}
 
   ngOnInit(): void {
-    this.store
-      .select('userData')
-      .subscribe((storeData) => (this.authenticated = storeData.authenticated));
+    this.authenticated$ = this.store.select('userData', 'authenticated');
   }
 
   onLogout() {

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ChartType } from 'chart.js';
 import { MultiDataSet, Label } from 'ng2-charts';
 import { Issue } from 'src/app/modal/issue.modal';
-import { IssuesService } from 'src/app/services/issues.service';
 
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 
@@ -19,10 +18,7 @@ export class DoughnutChartComponent implements OnInit {
   doughnutChartType: ChartType = 'doughnut';
   public pieChartPlugins = [DatalabelsPlugin];
 
-  constructor(
-    private issuesService: IssuesService,
-    private store: Store<fromApp.AppState>
-  ) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.store.select('issuesList').subscribe((storeData) => {
@@ -35,17 +31,5 @@ export class DoughnutChartComponent implements OnInit {
         ];
       }
     });
-
-    // this.issuesService.getIssues().subscribe(
-    //   (issues: Issue[]) => {
-    //     this.doughnutChartLabels = issues.map(
-    //       (issue: Issue) => issue.issueTitle
-    //     );
-    //     this.doughnutChartData = [
-    //       [...issues.map((issue: Issue) => issue.views)],
-    //     ];
-    //   },
-    //   (err) => console.log(err)
-    // );
   }
 }

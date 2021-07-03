@@ -3,23 +3,25 @@
     <div class="cards">
       <div class="card m-2">
         <h5 class="card-header text-center">User Details</h5>
-        <h6 class="card-subtitle mt-2 text-wrap text-muted text-center">
-          User Name: {{ user.username }}
-        </h6>
-        <div class="card-body">
-          <h5 class="card-title">First Name: {{ user.firstname }}</h5>
-          <p class="card-text">
-            <span class="fw-bold">Last Name: </span>
-            <span class="text-muted">{{ user.lastname }}</span>
-          </p>
-          <p class="card-text">
-            <span class="fw-bold">Location: </span>
-            <span class="text-muted">{{ user.location }}</span>
-          </p>
-          <p class="card-text">
-            <span class="fw-bold">Mobile Number: </span>
-            <span class="text-muted">{{ user.mobileNumber }}</span>
-          </p>
+        <div *ngIf="user$ | async as user">
+          <h6 class="card-subtitle mt-2 text-wrap text-muted text-center">
+            User Name: {{ user.username }}
+          </h6>
+          <div class="card-body">
+            <h5 class="card-title">First Name: {{ user.firstname }}</h5>
+            <p class="card-text">
+              <span class="fw-bold">Last Name: </span>
+              <span class="text-muted">{{ user.lastname }}</span>
+            </p>
+            <p class="card-text">
+              <span class="fw-bold">Location: </span>
+              <span class="text-muted">{{ user.location }}</span>
+            </p>
+            <p class="card-text">
+              <span class="fw-bold">Mobile Number: </span>
+              <span class="text-muted">{{ user.mobileNumber }}</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

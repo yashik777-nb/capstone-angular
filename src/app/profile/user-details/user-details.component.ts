@@ -3,6 +3,7 @@ import { User } from 'src/app/modal/user.modal';
 
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
@@ -10,13 +11,10 @@ import * as fromApp from '../../store/app.reducer';
   styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
-  user: User;
-
+  user$: Observable<User>;
   constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
-    this.store
-      .select('userData')
-      .subscribe((storeData) => (this.user = storeData.user));
+    this.user$ = this.store.select('userData', 'user');
   }
 }

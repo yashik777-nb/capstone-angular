@@ -20,7 +20,6 @@ describe('NavigationBarComponent', () => {
 
   const mockStore = {
     select: (...params) => {
-      console.log(params, '[Paramms]');
       if (params.includes('userData') && params.includes('authenticated'))
         return of(true);
     },

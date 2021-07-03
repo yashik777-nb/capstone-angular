@@ -1,14 +1,8 @@
-import {
-  ComponentFixture,
-  TestBed,
-  waitForAsync,
-  async,
-} from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { User } from '../modal/user.modal';
-import * as fromApp from '../store/app.reducer';
+
 import { NavigationBarComponent } from './navigation-bar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 

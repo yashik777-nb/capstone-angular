@@ -1,24 +1,25 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Store } from '@ngrx/store';
 
-// import { CustomizeComponent } from './customize.component';
+import { CustomizeComponent } from './customize.component';
 
-// describe('CustomizeComponent', () => {
-//   let component: CustomizeComponent;
-//   let fixture: ComponentFixture<CustomizeComponent>;
+describe('CustomizeComponent', () => {
+  let component: CustomizeComponent;
+  let fixture: ComponentFixture<CustomizeComponent>;
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [CustomizeComponent],
-//     }).compileComponents();
-//   });
+  const mockStore = {};
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(CustomizeComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [CustomizeComponent],
+      providers: [{ provide: Store, useValue: mockStore }],
+    }).compileComponents();
+    fixture = TestBed.createComponent(CustomizeComponent);
+    component = fixture.componentInstance;
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it('should create customize compoenent', () => {
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+  });
+});

@@ -1,25 +1,22 @@
-import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   faSignInAlt,
   faIdCard,
   faClipboardList,
-  faClipboardCheck,
   faCalendarAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import * as fromIssuesActions from '../store/actions/issues.actions';
-import * as fromUserActions from '../../profile/store/actions/user.actions';
+
 import { Issue } from 'src/app/modal/issue.modal';
 
-import { DatePickerDirective } from 'ng2-date-picker';
 import { DatePickerComponent } from 'ng2-date-picker';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Moment } from 'moment';
 import { IssuesService } from 'src/app/services/issues.service';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-issue',

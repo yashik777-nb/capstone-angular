@@ -22,7 +22,7 @@ describe('NavigationBarComponent', () => {
     select: (...params) => {
       console.log(params, '[Paramms]');
       if (params.includes('userData') && params.includes('authenticated'))
-        return of(true);
+        return of(false);
     },
   };
 
@@ -56,7 +56,7 @@ describe('NavigationBarComponent', () => {
         .whenStable()
         .then(() =>
           expect(compiled.querySelectorAll('.dropdown-menu li').length).toEqual(
-            5
+            2
           )
         );
     })

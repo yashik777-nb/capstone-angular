@@ -22,48 +22,12 @@ describe('Issues List Reducer', () => {
   it('should filter issues state', () => {
     const initialState = {
       issues: [
-        new Issue(
-          '2121',
-          'One',
-          'One',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-        new Issue(
-          '21212',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
+        new Issue('2121', 'One', 'One', 'Major', 'Open', null, null, 1),
+        new Issue('21212', 'Two', 'Two', 'Major', 'Open', null, null, 1),
       ],
       issuesCopy: [
-        new Issue(
-          '2121',
-          'One',
-          'One',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-        new Issue(
-          '21212',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
+        new Issue('2121', 'One', 'One', 'Major', 'Open', null, null, 1),
+        new Issue('21212', 'Two', 'Two', 'Major', 'Open', null, null, 1),
       ],
       editedIssue: null,
       editedIssueIndex: -1,
@@ -75,38 +39,11 @@ describe('Issues List Reducer', () => {
     const payLoad = 'Two';
     const expectedState = {
       issues: [
-        new Issue(
-          '21212',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
+        new Issue('21212', 'Two', 'Two', 'Major', 'Open', null, null, 1),
       ],
       issuesCopy: [
-        new Issue(
-          '2121',
-          'One',
-          'One',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-        new Issue(
-          '21212',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
+        new Issue('2121', 'One', 'One', 'Major', 'Open', null, null, 1),
+        new Issue('21212', 'Two', 'Two', 'Major', 'Open', null, null, 1),
       ],
       editedIssue: null,
       editedIssueIndex: -1,
@@ -134,41 +71,12 @@ describe('Issues List Reducer', () => {
       issueResolvedDateFlag: true,
     };
     const payLoad = [
-      new Issue(
-        '2121',
-        'Two',
-        'Two',
-        'Major',
-        'Open',
-        new Date(),
-        new Date(),
-        1
-      ),
+      new Issue('2121', 'Two', 'Two', 'Major', 'Open', null, null, 1),
     ];
     const expectedState = {
-      issues: [
-        new Issue(
-          '2121',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-      ],
+      issues: [new Issue('2121', 'Two', 'Two', 'Major', 'Open', null, null, 1)],
       issuesCopy: [
-        new Issue(
-          '2121',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
+        new Issue('2121', 'Two', 'Two', 'Major', 'Open', null, null, 1),
       ],
       editedIssue: null,
       editedIssueIndex: -1,
@@ -276,108 +184,6 @@ describe('Issues List Reducer', () => {
       issues: [new Issue('2121', 'One', 'One', 'Major', 'Open', null, null, 1)],
       issuesCopy: [
         new Issue('2121', 'One', 'One', 'Major', 'Open', null, null, 1),
-      ],
-      editedIssue: null,
-      editedIssueIndex: -1,
-      issueSeverityFlag: true,
-      issueStatusFlag: true,
-      issueCreatedDateFlag: true,
-      issueResolvedDateFlag: true,
-    };
-
-    const action = {
-      type: fromIssueActions.DELETE_ISSUE,
-    } as any;
-    expect(issuesListReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  it('should delete an issue State', () => {
-    const initialState = {
-      issues: [
-        new Issue(
-          '2121',
-          'One',
-          'One',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-        new Issue(
-          '2121',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-      ],
-      issuesCopy: [
-        new Issue(
-          '2121',
-          'One',
-          'One',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-        new Issue(
-          '2121',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-      ],
-      editedIssue: new Issue(
-        '2121',
-        'One',
-        'One',
-        'Major',
-        'Open',
-        new Date(),
-        new Date(),
-        1
-      ),
-      editedIssueIndex: 0,
-      issueSeverityFlag: true,
-      issueStatusFlag: true,
-      issueCreatedDateFlag: true,
-      issueResolvedDateFlag: true,
-    };
-    const payLoad = 'One';
-    const expectedState = {
-      issues: [
-        new Issue(
-          '2121',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-      ],
-      issuesCopy: [
-        new Issue(
-          '2121',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
       ],
       editedIssue: null,
       editedIssueIndex: -1,

@@ -7,14 +7,23 @@ import { of } from 'rxjs';
 import { Issue } from 'src/app/modal/issue.modal';
 import { IssuesService } from 'src/app/services/issues.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Moment } from 'moment';
 
 import { AddEditIssueComponent } from './add-edit-issue.component';
 import * as moment from 'moment';
+import { User } from 'src/app/modal/user.modal';
+import { Routes } from '@angular/router';
+import { DpDatePickerModule } from 'ng2-date-picker';
 
 describe('AddEditIssueComponent', () => {
   let component: AddEditIssueComponent;
   let fixture: ComponentFixture<AddEditIssueComponent>;
+
+  const routes: Routes = [
+    {
+      path: 'issues/:id/:mode',
+      component: AddEditIssueComponent,
+    },
+  ];
 
   const mockStore = {
     select: (...params) => {
@@ -43,18 +52,33 @@ describe('AddEditIssueComponent', () => {
             ),
           ],
         });
+
+      if (params.includes('userData'))
+        return of({
+          user: new User(
+            '121212',
+            'yash@abc.com',
+            'yash',
+            'Yash',
+            'IK',
+            'UK',
+            12121212
+          ),
+          authenticated: true,
+        });
     },
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddEditIssueComponent],
-      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule],
-      providers: [
-        IssuesService,
-        { provide: Store, useValue: mockStore },
-        NG_VALUE_ACCESSOR,
+      imports: [
+        FormsModule,
+        RouterTestingModule,
+        HttpClientTestingModule,
+        DpDatePickerModule,
       ],
+      providers: [IssuesService, { provide: Store, useValue: mockStore }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fixture = TestBed.createComponent(AddEditIssueComponent);

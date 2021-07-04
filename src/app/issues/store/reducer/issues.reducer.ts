@@ -51,7 +51,6 @@ export function issuesListReducer(
         issues: [...state.issues, action.payLoad],
         issuesCopy: [...state.issues, action.payLoad],
       };
-
     case issuesActions.UPDATE_ISSUE:
       const issue = state.issues[state.editedIssueIndex];
       const updatedIssue = {
@@ -68,7 +67,6 @@ export function issuesListReducer(
         editedIngredientIndex: -1,
       };
     case issuesActions.DELETE_ISSUE:
-      // const newIngredeints = state.ingredients.splice(action.payLoad, 1);
       return {
         ...state,
         issues: state.issues.filter(

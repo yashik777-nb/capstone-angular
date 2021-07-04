@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faUserLock } from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +17,8 @@ import * as fromUserActions from '../store/actions/user.actions';
 export class RegistrationComponent implements OnInit, OnDestroy {
   faSignIn = faUserLock;
   subscription: Subscription;
+
+  @ViewChild('f', { static: false }) registrationForm: NgForm;
 
   constructor(
     private store: Store<fromApp.AppState>,

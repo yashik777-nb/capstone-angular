@@ -18,15 +18,13 @@
         #username="ngModel"
       />
       <span
-        class="form-text text-danger"
+        class="form-text text-danger usernameError"
         *ngIf="!username.valid && username.touched"
         >Please enter a valid email</span
       >
     </div>
     <div class="form-control mt-3">
-      <label for="inputPassword" class="form-label"
-        ><strong>Password</strong></label
-      >
+      <label for="password" class="form-label"><strong>Password</strong></label>
       <input
         type="password"
         id="password"

@@ -38,12 +38,8 @@ export class IssuesComponent implements OnInit, OnDestroy {
     this._issuesService.getIssues();
     this.issues = this.store.select('issuesList');
     this.store.select('userData').subscribe((storeData) => {
-      if (storeData.user.id === '') {
-        this.userAuthenticated = false;
-      } else {
-        this.userAuthenticated = true;
-        this.username = storeData.user.firstname;
-      }
+      this.userAuthenticated = storeData.authenticated;
+      this.username = storeData.user.firstname;
     });
 
     this.store.select('issuesList').subscribe((stateDate) => {

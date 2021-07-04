@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
@@ -18,7 +18,6 @@ describe('AddEditIssueComponent', () => {
 
   const mockStore = {
     select: (...params) => {
-      console.log(params, '[Paramms]');
       if (params.includes('issuesList'))
         return of({
           issues: [
@@ -51,11 +50,17 @@ describe('AddEditIssueComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AddEditIssueComponent],
       imports: [FormsModule, RouterTestingModule, HttpClientTestingModule],
-      providers: [IssuesService, { provide: Store, useValue: mockStore }],
+      providers: [
+        IssuesService,
+        { provide: Store, useValue: mockStore },
+        NG_VALUE_ACCESSOR,
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fixture = TestBed.createComponent(AddEditIssueComponent);
     component = fixture.debugElement.componentInstance;
+    // component.issueCreatedDate = moment(new Date());
+    // component.issueResolvedDate = moment(new Date());
   });
 
   it('should create add/edit issues component', () => {

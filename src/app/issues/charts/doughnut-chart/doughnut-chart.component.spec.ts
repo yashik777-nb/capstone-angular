@@ -11,7 +11,6 @@ describe('DoughnutChartComponent', () => {
 
   const mockStore = {
     select: (...params) => {
-      console.log(params, '[Paramms]');
       if (params.includes('issuesList'))
         return of({
           issues: [

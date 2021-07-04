@@ -249,48 +249,12 @@ describe('Issues List Reducer', () => {
   it('should delete an issue State', () => {
     const initialState = {
       issues: [
-        new Issue(
-          '2121',
-          'One',
-          'One',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-        new Issue(
-          '2121',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
+        new Issue('2121', 'One', 'One', 'Major', 'Open', null, null, 1),
+        new Issue('2121', 'Two', 'Two', 'Major', 'Open', null, null, 1),
       ],
       issuesCopy: [
-        new Issue(
-          '2121',
-          'One',
-          'One',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-        new Issue(
-          '2121',
-          'Two',
-          'Two',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
+        new Issue('2121', 'One', 'One', 'Major', 'Open', null, null, 1),
+        new Issue('2121', 'Two', 'Two', 'Major', 'Open', null, null, 1),
       ],
       editedIssue: new Issue(
         '2121',
@@ -298,8 +262,8 @@ describe('Issues List Reducer', () => {
         'Two',
         'Major',
         'Open',
-        new Date(),
-        new Date(),
+        null,
+        null,
         1
       ),
       editedIssueIndex: 1,
@@ -309,29 +273,9 @@ describe('Issues List Reducer', () => {
       issueResolvedDateFlag: true,
     };
     const expectedState = {
-      issues: [
-        new Issue(
-          '2121',
-          'One',
-          'One',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
-      ],
+      issues: [new Issue('2121', 'One', 'One', 'Major', 'Open', null, null, 1)],
       issuesCopy: [
-        new Issue(
-          '2121',
-          'One',
-          'One',
-          'Major',
-          'Open',
-          new Date(),
-          new Date(),
-          1
-        ),
+        new Issue('2121', 'One', 'One', 'Major', 'Open', null, null, 1),
       ],
       editedIssue: null,
       editedIssueIndex: -1,

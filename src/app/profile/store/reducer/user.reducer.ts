@@ -17,7 +17,6 @@ export function userDataReducer(
 ) {
   switch (action.type) {
     case usersActions.AUTHENTICATE_USER:
-      console.log('[UserReducer AuthenticateUser]', action.payLoad);
       return {
         ...state,
         user: action.payLoad,
@@ -26,7 +25,7 @@ export function userDataReducer(
     case usersActions.LOGOUT_USER:
       return {
         ...state,
-        user: new User('', '', '', '', '', null, 0),
+        user: new User('', '', '', '', '', '', 0),
         authenticated: false,
       };
     default:

@@ -63,17 +63,19 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item" routerLink="sign-in">Sign-In</a>
+              <a class="dropdown-item" routerLink="profile/sign-in">Sign-In</a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="register">Register</a>
+              <a class="dropdown-item" routerLink="profile/register"
+                >Register</a
+              >
             </li>
             <div *ngIf="authenticated$ | async">
               <li>
                 <hr class="dropdown-divider" />
               </li>
               <li>
-                <a class="dropdown-item" routerLink="userDetails"
+                <a class="dropdown-item" routerLink="profile/user-details"
                   >User Details</a
                 >
               </li>

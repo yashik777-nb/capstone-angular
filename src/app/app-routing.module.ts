@@ -6,12 +6,13 @@ import { IssueDetailActivateGaurd } from './issues/guards/issueDetail-gaurd.serv
 import { AddIssueActivateGaurd } from './issues/guards/newIssue-gaurd.service';
 import { IssuesComponent } from './issues/issues.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { RegistrationComponent } from './profile/registration/registration.component';
-import { SignInComponent } from './profile/sign-in/sign-in.component';
-import { UserDetailsComponent } from './profile/user-details/user-details.component';
 
 const routes: Routes = [
-  { path: '', component: IssuesComponent, pathMatch: 'full' },
+  {
+    path: '',
+    component: IssuesComponent,
+    pathMatch: 'full',
+  },
   {
     path: 'issues',
     component: IssuesComponent,
@@ -31,18 +32,13 @@ const routes: Routes = [
     component: AboutComponent,
   },
   {
-    path: 'sign-in',
-    component: SignInComponent,
+    path: 'profile',
+    loadChildren: () =>
+      import('./profile/profile.routing.module').then(
+        (m) => m.ProfileRoutingModule
+      ),
   },
-  {
-    path: 'register',
-    component: RegistrationComponent,
-  },
-  {
-    path: 'userDetails',
-    component: UserDetailsComponent,
-  },
-  // { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

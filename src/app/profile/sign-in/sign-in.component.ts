@@ -18,6 +18,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   faSignIn = faSignInAlt;
 
   @ViewChild('f', { static: false }) signInForm: NgForm;
+  submitted: boolean = false;
   userNotFound: boolean = false;
   subscription: Subscription = new Subscription();
 
@@ -30,6 +31,8 @@ export class SignInComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   onSignInFormSubmit(form: NgForm) {
+    this.submitted = true;
+    console.log(this.signInForm);
     this.subscription = this.usersService.login().subscribe((users: User[]) => {
       let userFound = {
         ...users.filter((user: User) => {

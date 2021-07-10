@@ -17,6 +17,7 @@ import * as fromUserActions from '../store/actions/user.actions';
 export class RegistrationComponent implements OnInit, OnDestroy {
   faSignIn = faUserLock;
   subscription: Subscription;
+  submitted: boolean = false;
 
   @ViewChild('f', { static: false }) registrationForm: NgForm;
 
@@ -29,6 +30,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   onRegister(form: NgForm) {
+    this.submitted = true;
     const user = new User(
       '',
       form.value.username,

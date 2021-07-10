@@ -37,6 +37,8 @@ import {
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { IssueDetailActivateGaurd } from './issues/guards/issueDetail-gaurd.service';
 import { AddIssueActivateGaurd } from './issues/guards/newIssue-gaurd.service';
+import { SignInDeactivateGaurd } from './profile/guards/sign-in.deactivate.gaurd';
+import { RegistrationDeactivateGaurd } from './profile/guards/registration.deactivate.gaurd';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { AddIssueActivateGaurd } from './issues/guards/newIssue-gaurd.service';
     UsersService,
     IssueDetailActivateGaurd,
     AddIssueActivateGaurd,
+    SignInDeactivateGaurd,
+    RegistrationDeactivateGaurd,
   ],
   bootstrap: [AppComponent],
 })
